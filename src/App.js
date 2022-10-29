@@ -1,25 +1,23 @@
 import './App.css';
-import HelloWorld from './components/HelloWorld';
+import SayMyName from './components/SayMyName';
+import Person from './components/Person'
+
 
 function App() {
 
-  const name ='Matheus';
+  const name1 = 'Jesus';
 
-  const newName = name.toUpperCase()
-
-  function addition(a,b){
-    return a + b;
-  }
-
-  const url='https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg'
   return (
     <div className="App">
-      <h1>Hello, {name}</h1>
-      <h2>Hello, {newName}</h2>
-      <p>Addition: {2+2}</p>
-      <p>Addition: {addition(1,2)}</p>
-      <img src={url} alt='Minha imagem' />
-      <HelloWorld/>
+      <SayMyName name="Matheus" />
+      <SayMyName name="Robert" />
+      <SayMyName name={name1} />
+      <Person 
+      name = "Julio"
+      age = "45"
+      profession = "Analist"
+      picture = "https://s2.glbimg.com/3fuYf90x9fdl1KC1J_vcdv3y4D8=/600x400/smart/e.glbimg.com/og/ed/f/original/2022/08/02/gettyimages-1412406808.jpg"
+      />
     </div>
   );
 }
