@@ -6,7 +6,7 @@ function Form(){
         // console.log(name)
         // console.log(password)
         // console.log('The user was registered')
-        console.log(`user ${name} was register with this ${password}`)
+        console.log(`user ${name} was register with this password ${password}`)
     }
 
     const [name, setName] = useState()
