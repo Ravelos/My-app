@@ -1,15 +1,17 @@
 import './App.css';
-import AnotherList from './components/AnotherList';
+import {useState} from 'react'
+import YourName from './components/YourName';
+import Greetings from './components/Greetings';
 
 function App() {
 
-  const myItens=['Vue','Angular','React']
+  const [name, setName]=useState()
 
   return (
     <div className="App">
-      <h1>Rendering lists</h1>
-      <AnotherList itens={myItens}/>
-       
+      <h1>State Lift</h1>
+       <YourName setName={setName} />
+       <Greetings name={name}/>
     </div>
   );
 }
