@@ -7,9 +7,11 @@ import ProjectCard from "../project/ProjectCard";
 
 import styles from "./Projects.module.css";
 import { useState, useEffect } from "react";
+import Loading from "../layout/Loading";
 
 function Projects() {
   const [projects, setProject] = useState([]);
+  const [removeLoading, setRemoveLoading] = useState(false)
 
   const location = useLocation();
   let message = "";
@@ -19,6 +21,7 @@ function Projects() {
   }
 
   useEffect(() => {
+    setTimeout(()=>{
     fetch("http://localhost:5000/projects", {
       method: "GET",
       headers: {
@@ -27,10 +30,13 @@ function Projects() {
     })
       .then((resp) => resp.json())
       .then((data) => {
+        console.log(data)
         setProject(data);
+        setRemoveLoading(true)
       })
-      .catch((err) => console.log(err));
-  }, []);
+      .catch((err) => console.log(err))
+    },300)
+  }, [])
 
   return (
     <div className={styles.project_container}>
@@ -50,6 +56,11 @@ function Projects() {
               key={project.id}
             />
           ))}
+          {!removeLoading && <Loading/>}
+          {removeLoading && projects.length === 0 (
+            <p>There are not projects registered!</p>
+            )
+          }
       </Container>
     </div>
   );
