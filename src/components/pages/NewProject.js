@@ -13,7 +13,7 @@ function NewProject() {
 
     fetch('htpp://localhost:5000/projects', {
       method: 'POST',
-      header: {
+      headers: {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(project),
