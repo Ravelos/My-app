@@ -10,6 +10,7 @@ function Project(){
     const {id} = useParams()
     const [project, setProject] = useState([])
     const [showProjectForm, setShowProjectForm] = useState(false)
+    const [showServiceForm, setShowServiceForm] = useState(false)
     const [message, setMessage] = useState()
     const [type, setType] = useState()
 
@@ -31,6 +32,8 @@ function Project(){
     }, [id]);
 
     function editPost(project){
+        setMessage("")
+
         // budget validation
         if(project.budget < project.cost){
             setMessage("Budget cannot be lower than project's cost")
@@ -60,11 +63,15 @@ function Project(){
         setShowProjectForm(!showProjectForm)
     }
 
+    function toggleServiceForm(){
+        setShowServiceForm(!showServiceForm)
+    }
+
     return(
         <>{project.name ? (
-            <Container customClass="column">
-                {message && <Message type={type} msg={message} />}
-                <div className={styles.details_container}>
+            <div className={styles.details_container}>
+                <Container customClass="column">
+                {message && <Message type={type} msg={message} />}                
                     <h1>Project: {project.name}</h1>
                     <button className={styles.btn} onClick={toggleProjectForm}>
                         {!showProjectForm ? 'Edit project' : 'Close'}
@@ -85,8 +92,21 @@ function Project(){
                             />
                         </div>
                     )}
-                </div>
-            </Container>
+                    <div className={styles.service_form_container}>
+                        <h2>Add a service:</h2>
+                        <button className={styles.btn} onClick={toggleServiceForm}>
+                        {!showServiceForm ? 'Add service' : 'Close'}
+                        </button>
+                        <div className={styles.project_info}>
+                            {showServiceForm && (<div>Service's form</div>)}
+                        </div>
+                    </div>
+                    <h2>Services</h2>
+                    <Container customClass='start'>
+                        <p>Services' items</p>
+                    </Container>
+                </Container>
+            </div>
         ) : (<Loading/>)}</>
     )
     
